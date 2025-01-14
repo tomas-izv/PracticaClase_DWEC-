@@ -7,11 +7,20 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            ...
+        <form id="createForm">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="productName" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="productPrice" name="price" required>
+                </div>
+            </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" id="save-changes">Save changes</button>
         </div>
         </div>
     </div>
@@ -26,8 +35,7 @@
         <div class="modal-body">
             Are you sure you want to delete the product <span id="deleteModalName"></span>?
         </div>
-        <!-- RED SPACE ERROR -->
-        <div class="alert alert-danger" role="alert" id="productDeleteWarning">An error ocurred. The product is still avaliable.</div>
+        <div class="alert alert-warning" role="alert" id="productDeleteWarning">An error ocurred. The product is still avaliable.</div>
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -58,11 +66,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="viewModalLabel">Segunda</h1>
+            <h1 class="modal-title fs-5" id="viewModalLabel">Product</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            id: <span id="id-view"></span>
+            <div id="id-view"></div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

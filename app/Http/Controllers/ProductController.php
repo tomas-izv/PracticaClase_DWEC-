@@ -56,15 +56,13 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        sleep(2);
         $product = Product::find($id);
         $message = '';
         if ($product === null) {
             $message = 'Product not found';
         }
         return response()->json(['product' => $product, 'message' => $message]);
-
-
-
     }
 
     // No need for edit() because we are going to do it with our App
@@ -114,6 +112,10 @@ class ProductController extends Controller
         } else {
             $message = 'Product not found';
         }
-        return response()->json(['result' => $result, 'message' => $message]);
+        return response()->json([
+            'message' => $message,
+            'products' => $product,
+            'result' => $result,
+        ]);
     }
 }
