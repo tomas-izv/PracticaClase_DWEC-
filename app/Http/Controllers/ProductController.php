@@ -22,6 +22,11 @@ class ProductController extends Controller
 
     public function index()
     {
+        return response()->json(['products' => Product::orderBy('name')->paginate(10)]);
+    }
+
+    public function index1()
+    {
         return response()->json(['products' => Product::orderBy('name')->get()]);
     }
 
@@ -42,8 +47,10 @@ class ProductController extends Controller
         if ($validator->passes()) {
             $message = '';
             $object = new Product($request->all());
+            $products = [];
             try {
                 $result = $object->save();
+                $products = Product::orderBy('name')->paginate(10);
             } catch (\Exception $e) {
                 $result = false;
             }
@@ -51,7 +58,7 @@ class ProductController extends Controller
             $result = false;
             $message = $validator->getMessageBag();
         }
-        return response()->json(['result' => $result, 'message' => $message]);
+        return response()->json(['result' => $result, 'message' => $message, 'products' => $products]);
     }
 
     public function show($id)
@@ -86,6 +93,7 @@ class ProductController extends Controller
             if ($validator->passes()) {
                 try {
                     $result = $product->update($request->all());
+                    $products = Product::orderBy('name')->paginate(10);
                 } catch (\Exception $e) {
                     $message = $e->getMessage();
                 }
@@ -106,6 +114,8 @@ class ProductController extends Controller
         if ($product != null) {
             try {
                 $result = $product->delete();
+                // $products = Product::orderBy('name')->get();
+                $products = Product::orderBy('name')->paginate(10);
             } catch (\Exception $e) {
                 $message = $e->getMessage();
             }
@@ -114,7 +124,8 @@ class ProductController extends Controller
         }
         return response()->json([
             'message' => $message,
-            'products' => $product,
+            'product' => $product,
+            'products' => $products,
             'result' => $result,
         ]);
     }

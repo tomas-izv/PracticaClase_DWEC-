@@ -166,7 +166,7 @@
                 buttonCreate.dataset.method = "post";
                 content.appendChild(buttonCreate);
                 let contenido = '';
-                data.products.forEach(element => {
+                data.products.data.forEach(element => {
                     const div = document.createElement('div');
                     /*for (const key in element) {
                         div.textContent = element[key];
@@ -240,7 +240,7 @@
             });
 
             modalDeleteConfirm.addEventListener('click', () => {
-                httpClient.delete(deleteData.url,{}, (data)=> {
+                httpClient.delete(deleteData.url, (data) => {
                     if(data.result) {
                         console.log("todo ha ido bien, cierra la ventana");
                         document.getElementById("productDeleteSuccess").style.display= "block";
